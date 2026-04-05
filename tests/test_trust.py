@@ -1,7 +1,7 @@
 """Tests for Layer 4: Trust scoring and reputation."""
 
 from datetime import datetime, timezone, timedelta
-from blindfold.trust import TrustScore, TrustLedger
+from sypact.trust import TrustScore, TrustLedger
 
 
 class TestTrustScore:

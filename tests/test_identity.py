@@ -1,12 +1,12 @@
 """Tests for Layer 1: Agent identity with Ed25519 keypairs."""
 
-from blindfold import CredentialHandle, EnvBackend
-from blindfold.identity import AgentIdentity
+from sypact import CredentialHandle, EnvBackend
+from sypact.identity import AgentIdentity
 
 
 class TestGenerate:
     def test_generate_returns_identity_and_handle(self) -> None:
-        backend = EnvBackend(prefix="BLINDFOLD_TEST_")
+        backend = EnvBackend(prefix="SYPACT_TEST_")
         identity, private_key_handle = AgentIdentity.generate(
             agent_id="agent-001", owner_id="zan", backend=backend,
         )
@@ -18,7 +18,7 @@ class TestGenerate:
         backend.delete(private_key_handle)
 
     def test_private_key_not_on_identity(self) -> None:
-        backend = EnvBackend(prefix="BLINDFOLD_TEST_")
+        backend = EnvBackend(prefix="SYPACT_TEST_")
         identity, handle = AgentIdentity.generate(
             agent_id="agent-002", owner_id="zan", backend=backend,
         )
@@ -30,7 +30,7 @@ class TestGenerate:
 
 class TestSignAndVerify:
     def test_sign_and_verify_roundtrip(self) -> None:
-        backend = EnvBackend(prefix="BLINDFOLD_TEST_")
+        backend = EnvBackend(prefix="SYPACT_TEST_")
         identity, handle = AgentIdentity.generate(
             agent_id="agent-003", owner_id="zan", backend=backend,
         )
@@ -41,7 +41,7 @@ class TestSignAndVerify:
         backend.delete(handle)
 
     def test_verify_rejects_tampered_message(self) -> None:
-        backend = EnvBackend(prefix="BLINDFOLD_TEST_")
+        backend = EnvBackend(prefix="SYPACT_TEST_")
         identity, handle = AgentIdentity.generate(
             agent_id="agent-004", owner_id="zan", backend=backend,
         )
@@ -50,7 +50,7 @@ class TestSignAndVerify:
         backend.delete(handle)
 
     def test_verify_rejects_wrong_signature(self) -> None:
-        backend = EnvBackend(prefix="BLINDFOLD_TEST_")
+        backend = EnvBackend(prefix="SYPACT_TEST_")
         identity, handle = AgentIdentity.generate(
             agent_id="agent-005", owner_id="zan", backend=backend,
         )
@@ -60,7 +60,7 @@ class TestSignAndVerify:
 
 class TestReprSafety:
     def test_repr_shows_id_not_key(self) -> None:
-        backend = EnvBackend(prefix="BLINDFOLD_TEST_")
+        backend = EnvBackend(prefix="SYPACT_TEST_")
         identity, handle = AgentIdentity.generate(
             agent_id="agent-006", owner_id="zan", backend=backend,
         )

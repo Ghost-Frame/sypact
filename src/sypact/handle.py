@@ -24,7 +24,7 @@ class CredentialHandle:
         return f"CredentialHandle(name={self.name!r}, backend={self.backend_tag!r})"
 
     def __str__(self) -> str:
-        return f"<blindfold:{self.backend_tag}/{self.name}>"
+        return f"<sypact:{self.backend_tag}/{self.name}>"
 
     def __format__(self, format_spec: str) -> str:
         return str(self)

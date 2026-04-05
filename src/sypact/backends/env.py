@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from datetime import datetime, timezone
 
-from blindfold.handle import CredentialHandle
+from sypact.handle import CredentialHandle
 
 
 class EnvBackend:

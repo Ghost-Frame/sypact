@@ -18,8 +18,8 @@ from cryptography.hazmat.primitives.serialization import (
 )
 from cryptography.exceptions import InvalidSignature
 
-from blindfold.backends.base import SecretBackend
-from blindfold.handle import CredentialHandle
+from sypact.backends.base import SecretBackend
+from sypact.handle import CredentialHandle
 
 
 @dataclass(frozen=True, slots=True)

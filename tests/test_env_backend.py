@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-from blindfold import CredentialHandle, EnvBackend, SecretBackend
+from sypact import CredentialHandle, EnvBackend, SecretBackend
 
 
 @pytest.fixture
@@ -14,7 +14,7 @@ def backend() -> EnvBackend:
 
 @pytest.fixture
 def prefixed_backend() -> EnvBackend:
-    return EnvBackend(prefix="BLINDFOLD_TEST_")
+    return EnvBackend(prefix="SYPACT_TEST_")
 
 
 class TestStoreAndResolve:
@@ -69,7 +69,7 @@ class TestPrefix:
 
     def test_prefix(self, prefixed_backend: EnvBackend) -> None:
         handle = prefixed_backend.store("MY_KEY", "my_value")
-        assert os.environ.get("BLINDFOLD_TEST_MY_KEY") == "my_value"
+        assert os.environ.get("SYPACT_TEST_MY_KEY") == "my_value"
         assert prefixed_backend.resolve(handle) == "my_value"
         # Cleanup
         prefixed_backend.delete(handle)

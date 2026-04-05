@@ -1,4 +1,4 @@
-# blindfold
+# sypact
 
 Agent trust library where opaque credential handling is a property of everything.
 
@@ -7,19 +7,19 @@ Agents operate with full capability but zero visibility into the secrets that po
 ## Install
 
 ```bash
-pip install blindfold
+pip install sypact
 ```
 
 ## Quick Start
 
 ```python
-from blindfold import CredentialHandle, EnvBackend
+from sypact import CredentialHandle, EnvBackend
 
 backend = EnvBackend()
 handle = backend.store("API_KEY", "sk-secret-value")
 
 # The handle is safe to pass around -- it never exposes the secret
-print(handle)  # <blindfold:default/API_KEY>
+print(handle)  # <sypact:default/API_KEY>
 
 # Secret is resolved only at point of use
 secret = backend.resolve(handle)
@@ -27,7 +27,7 @@ secret = backend.resolve(handle)
 
 ## Architecture
 
-blindfold is built in four layers, each adding a level of trust:
+sypact is built in four layers, each adding a level of trust:
 
 - **Layer 0** -- Credential handles and pluggable secret backends
 - **Layer 1** -- Agent identity (human-delegated certificates)

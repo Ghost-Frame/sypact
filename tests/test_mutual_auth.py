@@ -2,14 +2,14 @@
 
 import pytest
 
-from blindfold import EnvBackend
-from blindfold.identity import AgentIdentity
-from blindfold.auth import MutualAuth, Challenge, ChallengeResponse
+from sypact import EnvBackend
+from sypact.identity import AgentIdentity
+from sypact.auth import MutualAuth, Challenge, ChallengeResponse
 
 
 @pytest.fixture
 def backend() -> EnvBackend:
-    return EnvBackend(prefix="BLINDFOLD_TEST_AUTH_")
+    return EnvBackend(prefix="SYPACT_TEST_AUTH_")
 
 
 @pytest.fixture

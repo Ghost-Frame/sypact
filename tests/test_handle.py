@@ -1,8 +1,8 @@
-"""Tests for CredentialHandle -- the core blindfold abstraction."""
+"""Tests for CredentialHandle -- the core sypact abstraction."""
 
 import dataclasses
 
-from blindfold import CredentialHandle
+from sypact import CredentialHandle
 
 
 class TestReprSafety:
@@ -18,12 +18,12 @@ class TestReprSafety:
 
     def test_str_no_leak(self) -> None:
         handle = CredentialHandle(name="API_KEY", backend_tag="env")
-        assert str(handle) == "<blindfold:env/API_KEY>"
+        assert str(handle) == "<sypact:env/API_KEY>"
 
     def test_format_no_leak(self) -> None:
         handle = CredentialHandle(name="TOKEN", backend_tag="vault")
         formatted = f"Handle is {handle}"
-        assert formatted == "Handle is <blindfold:vault/TOKEN>"
+        assert formatted == "Handle is <sypact:vault/TOKEN>"
 
     def test_repr_format(self) -> None:
         handle = CredentialHandle(name="KEY", backend_tag="default")

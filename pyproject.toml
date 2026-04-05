@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "blindfold"
+name = "sypact"
 version = "0.1.0"
 description = "Agent trust library with opaque credential handling"
 readme = "README.md"
@@ -33,7 +33,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/blindfold"]
+packages = ["src/sypact"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

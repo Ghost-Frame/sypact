@@ -6,9 +6,9 @@ import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-from blindfold.backends.base import SecretBackend
-from blindfold.handle import CredentialHandle
-from blindfold.identity.agent import AgentIdentity
+from sypact.backends.base import SecretBackend
+from sypact.handle import CredentialHandle
+from sypact.identity.agent import AgentIdentity
 
 
 @dataclass(frozen=True, slots=True)

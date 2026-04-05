@@ -1,7 +1,7 @@
 """Tests for Layer 3: Capability negotiation."""
 
 from datetime import datetime, timezone
-from blindfold.negotiation import Capability, CapabilitySet, Permission
+from sypact.negotiation import Capability, CapabilitySet, Permission
 
 
 class TestCapabilitySet:
