@@ -2,14 +2,17 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+
+from blindfold.backends.base import SecretBackend
+from blindfold.handle import CredentialHandle
+from blindfold.identity.agent import AgentIdentity
 
 
 @dataclass(frozen=True, slots=True)
 class Challenge:
-    """A challenge issued during mutual authentication."""
-
     nonce: bytes
     issuer_id: str
     created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
@@ -17,27 +20,20 @@ class Challenge:
 
 @dataclass(frozen=True, slots=True)
 class ChallengeResponse:
-    """A response to an authentication challenge."""
-
     nonce: bytes
     responder_id: str
     signature: bytes
 
 
 class MutualAuth:
-    """Mutual authentication protocol between two agents.
-
-    Both sides prove identity before the channel opens.
-    """
-
     def create_challenge(self, issuer_id: str) -> Challenge:
-        """Create a new authentication challenge."""
-        raise NotImplementedError("Layer 2 not yet implemented")
+        return Challenge(nonce=os.urandom(32), issuer_id=issuer_id)
 
-    def respond(self, challenge: Challenge, responder_id: str) -> ChallengeResponse:
-        """Respond to an authentication challenge."""
-        raise NotImplementedError("Layer 2 not yet implemented")
+    def respond(self, challenge: Challenge, responder_identity: AgentIdentity, private_key_handle: CredentialHandle, backend: SecretBackend) -> ChallengeResponse:
+        signature = responder_identity.sign(challenge.nonce, private_key_handle=private_key_handle, backend=backend)
+        return ChallengeResponse(nonce=challenge.nonce, responder_id=responder_identity.agent_id, signature=signature)
 
-    def verify_response(self, challenge: Challenge, response: ChallengeResponse) -> bool:
-        """Verify a challenge response."""
-        raise NotImplementedError("Layer 2 not yet implemented")
+    def verify_response(self, challenge: Challenge, response: ChallengeResponse, responder_identity: AgentIdentity) -> bool:
+        if challenge.nonce != response.nonce:
+            return False
+        return responder_identity.verify(challenge.nonce, response.signature)
