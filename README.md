@@ -29,11 +29,11 @@ secret = backend.resolve(handle)
 
 sypact is built in four layers, each adding a level of trust:
 
-- **Layer 0** -- Credential handles and pluggable secret backends
-- **Layer 1** -- Agent identity (human-delegated certificates)
-- **Layer 2** -- Mutual authentication (challenge-response between agents)
-- **Layer 3** -- Capability negotiation ("I can do X, what can you do?")
-- **Layer 4** -- Trust scoring (behavioral reputation over time)
+- **Layer 0** : Credential handles and pluggable secret backends
+- **Layer 1** : Agent identity (human-delegated certificates)
+- **Layer 2** : Mutual authentication (challenge-response between agents)
+- **Layer 3** : Capability negotiation ("I can do X, what can you do?")
+- **Layer 4** :Trust scoring (behavioral reputation over time)
 
 ## License
 
