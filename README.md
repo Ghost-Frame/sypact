@@ -2,7 +2,7 @@
 
 Agent trust library where opaque credential handling is a property of everything.
 
-Agents operate with full capability but zero visibility into the secrets that power them. Credentials are resolved at point of use through opaque handles -- the LLM never sees raw secret material.
+Agents operate with full capability but zero visibility into the secrets that power them. Credentials are resolved at point of use through opaque handles - the LLM never sees raw secret material.
 
 ## Install
 
